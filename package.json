@@ -1,0 +1,14 @@
+{
+  "name": "vue-authed",
+  "version": "1.0.0",
+  "description": "A simple light-weight library for Vue.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "vue-authed"
+  ],
+  "author": "Hopper Sun",
+  "license": "MIT"
+}
