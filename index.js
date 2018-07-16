@@ -1,5 +1,5 @@
 /*!
- * vue-auth <https://github.com/HopperGithub/vue-authed>
+ * vue-auth <https://github.com/HopperGithub/vue-auth>
  *
  * Copyright (c) 2018-present, Hopper Sun.
  * Released under the MIT License.
@@ -7,9 +7,9 @@
 
 'use strict';
 
-import Auth from './auth';
-import directive from './directive';
-import authentication from './auth-panel';
+import Auth from './src/auth';
+import directive from './src/directive';
+import authentication from './src/auth-panel';
 
 var install = function (Vue, opts = {}) {
 

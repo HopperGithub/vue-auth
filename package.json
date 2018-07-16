@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A simple authencation library for Vue.js",
   "main": "index.js",
+  "module": "index.js",
   "scripts": {
     "test": "mocha"
   },
