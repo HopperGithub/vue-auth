@@ -1,10 +1,10 @@
-# vue-auth
+# vue4auth
 A simple authencation library for Vue.js
 
 1. register
    ```
    import Vue from 'vue';
-   import Auth from 'vue-auth';
+   import Auth from 'vue4auth';
    Vue.use(Auth, {
      is: (value) => (['aaa', 'bbb'].includes(value))
    });
