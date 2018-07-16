@@ -2,8 +2,8 @@
   "name": "vue4auth",
   "version": "1.0.5",
   "description": "A simple authencation library for Vue.js",
-  "main": "dist/vue4auth.js",
-  "module": "dist/vue4auth.esm.js",
+  "main": "index.js",
+  "module": "dist/index.esm.js",
   "scripts": {
     "test": "mocha",
     "build": "rollup -c"

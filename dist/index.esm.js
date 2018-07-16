@@ -1,15 +1,26 @@
-class Auth {
-    constructor (options = {}) {
-        this.options = options;
-        this.is = options.is || (v => false);
-    }
-}
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
 
-function remove (el, vnode) {
+var Auth = function Auth() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    classCallCheck(this, Auth);
+
+    this.options = options;
+    this.is = options.is || function (v) {
+        return false;
+    };
+};
+
+function remove(el, vnode) {
     // replace HTMLElement with comment node
-    const comment = document.createComment(' ');
+    var comment = document.createComment(' ');
     Object.defineProperty(comment, 'setAttribute', {
-        value: () => undefined,
+        value: function value() {
+            return undefined;
+        }
     });
     vnode.elm = comment;
     vnode.text = ' ';
@@ -28,27 +39,27 @@ function remove (el, vnode) {
     // delValue(vnode);
 }
 
-function getvalue (vnode) {
-    const el = vnode.elm.parentNode;
+function getvalue(vnode) {
+    var el = vnode.elm.parentNode;
     return el && el.dataset && el.dataset.authcode;
 }
 
-function delValue (vnode) {
-    const el = vnode.elm.parentNode;
+function delValue(vnode) {
+    var el = vnode.elm.parentNode;
     if (el && el.dataset && el.dataset.authcode) {
         delete el.dataset.authcode;
     }
 }
 
-function doBind (el, binding, vnode) {
-    const m = binding.modifiers;
-    let exp;
+function doBind(el, binding, vnode) {
+    var m = binding.modifiers;
+    var exp = void 0;
 
     if ((!m || Object.keys(m).length === 0 || m.if) && binding.value) {
         vnode.elm.parentNode.dataset.authcode = binding.value;
         exp = !vnode.context.$auth.is(binding.value);
     } else if (m.else) {
-        const value = binding.value || getvalue(vnode);
+        var value = binding.value || getvalue(vnode);
         exp = vnode.context.$auth.is(value);
     }
 
@@ -67,29 +78,29 @@ function doBind (el, binding, vnode) {
  */
 
 var directive = {
-    bind (el, binding, vnode) {
+    bind: function bind(el, binding, vnode) {
         // doBind(el, binding, vnode);
     },
-    inserted (el, binding, vnode) {
+    inserted: function inserted(el, binding, vnode) {
         doBind(el, binding, vnode);
     },
-    update (el, binding, vnode) {
+    update: function update(el, binding, vnode) {
         doBind(el, binding, vnode);
         vnode.context.$parent.$forceUpdate();
     },
-    unbind (el, binding, vnode) {
+    unbind: function unbind(el, binding, vnode) {
         delValue(vnode);
     }
 };
 
-const authenticationProps = {
+var authenticationProps = {
     name: String,
     code: String,
     type: String
 };
 
-function isComment (node) {
-    return node.isComment && node.asyncFactory
+function isComment(node) {
+    return node.isComment && node.asyncFactory;
 }
 
 var authentication = {
@@ -97,41 +108,40 @@ var authentication = {
     props: authenticationProps,
     abstract: true,
 
-    render (h) {
-        let children = this.$options._renderChildren;
-        const warn = console.warn;
+    render: function render(h) {
+        var children = this.$options._renderChildren;
+        var warn = console.warn;
 
         if (!children) {
-            return
+            return;
         }
 
         // filter out text nodes (possible whitespaces)
-        children = children.filter((c) => c.tag || isComment(c));
+        children = children.filter(function (c) {
+            return c.tag || isComment(c);
+        });
         /* istanbul ignore if */
         if (!children.length) {
-            return
+            return;
         }
 
         // warn multiple elements
         if (process.env.NODE_ENV !== 'production' && children.length > 2) {
-            warn(
-                '<authentication> can only contain a single or two elements.',
-                this.$parent
-            );
+            warn('<authentication> can only contain a single or two elements.', this.$parent);
         }
 
-        const code = this.code;
+        var code = this.code;
 
         // warn invalid mode
         if (process.env.NODE_ENV !== 'production' && !code.length) {
-            warn(
-                '<authentication> string code length must &gt 0: ' + code,
-                this.$parent
-            );
+            warn('<authentication> string code length must &gt 0: ' + code, this.$parent);
         }
 
         // handle authentication code
-        const { default: d, else: e } = this.$slots;
+        var _$slots = this.$slots,
+            d = _$slots.default,
+            e = _$slots.else;
+
 
         if (this.$auth.is(code)) {
             return d[0];
@@ -150,7 +160,9 @@ var authentication = {
  * Released under the MIT License.
  */
 
-var install = function (Vue, opts = {}) {
+var install = function install(Vue) {
+    var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
 
     var auth = new Auth(opts);
 
@@ -158,18 +170,17 @@ var install = function (Vue, opts = {}) {
 
     Vue.auth = auth;
 
-    Object.defineProperty(Vue.prototype, '$auth', ({
-        get: function () {
+    Object.defineProperty(Vue.prototype, '$auth', {
+        get: function get() {
             auth.is = is.bind(this);
 
             return auth;
         }
-    }));
+    });
 
     Vue.directive('auth', directive);
     Vue.component('auth-panel', authentication);
 };
-
 
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
@@ -177,9 +188,9 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 var main = {
-    install,
-    Auth,
-    directive
+    install: install,
+    Auth: Auth,
+    directive: directive
 };
 
 export default main;
