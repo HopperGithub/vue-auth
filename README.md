@@ -1,2 +1,2 @@
-# vue-authed
-A simple light-weight library for Vue.js
+# vue-auth
+A simple authencation library for Vue.js

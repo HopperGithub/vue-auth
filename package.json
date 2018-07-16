@@ -1,14 +1,20 @@
 {
-  "name": "vue-authed",
+  "name": "vue-auth",
   "version": "1.0.0",
-  "description": "A simple light-weight library for Vue.js",
+  "description": "A simple authencation library for Vue.js",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha"
   },
   "keywords": [
-    "vue-authed"
+    "vue-auth"
   ],
   "author": "Hopper Sun",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=4.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
 }
