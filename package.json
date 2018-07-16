@@ -1,6 +1,6 @@
 {
   "name": "vue4auth",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A simple authencation library for Vue.js",
   "main": "index.js",
   "module": "dist/index.esm.js",
