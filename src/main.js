@@ -7,9 +7,9 @@
 
 'use strict';
 
-import Auth from './src/auth';
-import directive from './src/directive';
-import authentication from './src/auth-panel';
+import Auth from './auth';
+import directive from './directive';
+import authentication from './auth-panel';
 
 var install = function (Vue, opts = {}) {
 
