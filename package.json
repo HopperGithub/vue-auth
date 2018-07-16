@@ -1,8 +1,8 @@
 {
   "name": "vue4auth",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple authencation library for Vue.js",
-  "main": "src/main.js",
+  "main": "dist/vue4auth.js",
   "module": "dist/vue4auth.es.js",
   "scripts": {
     "test": "mocha",
